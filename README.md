@@ -98,7 +98,7 @@ The application is deployed to Google Cloud Run for the backend API and Firebase
 
 ## Screenshots or Demo Video
 
-![Chama Agent Connect Screenshot](../../src/main/images/img.png)
+![Chama Agent Connect Screenshot](https://github.com/JoshuaMusyoki/Chama_AngentCon/blob/03f289f468eb5c8d788e6663896f27d29df9df56/src/main/images/img.png)
 
 ## Team Members and Their Roles
 
