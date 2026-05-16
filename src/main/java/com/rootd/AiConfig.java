@@ -19,7 +19,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.time.Duration;
 
 @Configuration
@@ -30,7 +33,12 @@ public class AiConfig {
         System.out.println("[AI CONFIG] Initializing Mpatanishi AI...");
 
         // 1. Setup Models
-        String apiKey = "AIzaSyDjors_Ko23hXowxtdGmuz9K8u8sMuAOyE";
+        // Use environment variable for API Key in production
+        String apiKey = System.getenv("GOOGLE_AI_API_KEY");
+        if (apiKey == null || apiKey.isEmpty()) {
+            apiKey = "AIzaSyDjors_Ko23hXowxtdGmuz9K8u8sMuAOyE"; // Fallback for local
+        }
+
         GoogleAiGeminiChatModel model = GoogleAiGeminiChatModel.builder()
                 .apiKey(apiKey)
                 .modelName("gemini-3-flash-preview")
@@ -42,11 +50,15 @@ public class AiConfig {
         EmbeddingModel embeddingModel = new AllMiniLmL6V2QuantizedEmbeddingModel();
         EmbeddingStore<TextSegment> embeddingStore = new InMemoryEmbeddingStore<>();
 
-        // 2. Ingest Bylaws
-        System.out.println("[AI CONFIG] Loading bylaws.txt from classpath...");
+        // 2. Ingest Bylaws (Safe for JAR execution)
+        System.out.println("[AI CONFIG] Loading bylaws.txt...");
         ClassPathResource resource = new ClassPathResource("bylaws.txt");
-        Path path = resource.getFile().toPath();
-        Document document = FileSystemDocumentLoader.loadDocument(path, new ApacheTikaDocumentParser());
+        Path tempFile = Files.createTempFile("bylaws", ".txt");
+        try (InputStream inputStream = resource.getInputStream()) {
+            Files.copy(inputStream, tempFile, StandardCopyOption.REPLACE_EXISTING);
+        }
+        
+        Document document = FileSystemDocumentLoader.loadDocument(tempFile, new ApacheTikaDocumentParser());
         
         EmbeddingStoreIngestor ingestor = EmbeddingStoreIngestor.builder()
                 .documentSplitter(dev.langchain4j.data.document.splitter.DocumentSplitters.recursive(300, 0))
