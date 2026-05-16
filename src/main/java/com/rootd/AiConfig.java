@@ -36,7 +36,7 @@ public class AiConfig {
         // Use environment variable for API Key in production
         String apiKey = System.getenv("GOOGLE_AI_API_KEY");
         if (apiKey == null || apiKey.isEmpty()) {
-            apiKey = "AIzaSyDjors_Ko23hXowxtdGmuz9K8u8sMuAOyE"; // Fallback for local
+            apiKey = "YOUR_GEMINI_API_KEY"; // Fallback for local
         }
 
         GoogleAiGeminiChatModel model = GoogleAiGeminiChatModel.builder()

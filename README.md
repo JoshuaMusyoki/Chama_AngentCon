@@ -42,11 +42,9 @@ To run the Chama Agent Connect application on your local machine, follow these s
 
 2.  **Clone the Repository**:
     ```bash
-    git clone https://github.com/your-username/Chama_AngentCon.git
+    git clone https://github.com/JoshuaMusyoki/Chama_AngentCon.git
     cd Chama_AngentCon
     ```
-    (Replace `https://github.com/your-username/Chama_AngentCon.git` with the actual repository URL)
-
 3.  **Set up Google AI API Key**:
     The application expects the Google AI API Key to be set as an environment variable.
     *   **Linux/macOS**:
@@ -99,7 +97,8 @@ The application is deployed to Google Cloud Run for the backend API and Firebase
 ## Screenshots or Demo Video
 
 ![Chama Agent Connect Screenshot](https://github.com/JoshuaMusyoki/Chama_AngentCon/blob/03f289f468eb5c8d788e6663896f27d29df9df56/src/main/images/img.png)
-
+![Query The AI Image](src/main/images/img_1.png)
+![Responses Image](src/main/images/img_2.png)
 
 
 ## Data Handling and Political Neutrality Policy
