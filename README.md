@@ -100,12 +100,7 @@ The application is deployed to Google Cloud Run for the backend API and Firebase
 
 ![Chama Agent Connect Screenshot](https://github.com/JoshuaMusyoki/Chama_AngentCon/blob/03f289f468eb5c8d788e6663896f27d29df9df56/src/main/images/img.png)
 
-## Team Members and Their Roles
 
-*   **[Your Name/Team Member 1]**: [Role, e.g., Lead Developer, AI Engineer]
-*   **[Team Member 2]**: [Role]
-*   **[Team Member 3]**: [Role]
-*   ...
 
 ## Data Handling and Political Neutrality Policy
 
